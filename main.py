@@ -13,8 +13,22 @@ class Student:
             else:
                 lecturer.lect_rate[course] = [grade]
         else:
-            return 'Ошибка'
+            print('Ошибка')
 
+    def __str__(self):
+        sep = '\n'
+        summ_grade = 0
+        for grade in self.grades:
+            summ_grade += grade
+        if summ_grade == 0:
+            ave_grade = 'оценок пока нет'
+        else:
+            ave_grade = summ_grage / len(self.grades)
+        courses_now = str(', '.join(self.courses_in_progress))
+        courses_past = str(', '.join(self.finished_courses))
+        description = f'Имя: {self.name}{sep}Фамилия: {self.surname}{sep}Средняя оценка за домашние задания: \
+{ave_grade}{sep}Курсы в процессе изучения: {courses_now}{sep}Завершенные курсы: {courses_past}'
+        return description
 
 class Mentor:
     def __init__(self, name, surname):
@@ -41,17 +55,7 @@ class Reviewer(Mentor):
         else:
             print('Ошибка')
 
-best_student = Student('Ruoy', 'Eman', 'your_gender')
-best_student.courses_in_progress += ['Python']
-best_student.courses_in_progress += ['WEB']
-cool_mentor = Reviewer('Some', 'Buddy')
-cool_mentor.courses_attached += ['Python']
-cool_mentor.courses_attached += ['WEB']
-cool_mentor.rate_hw(best_student, 'Python', 10)
-cool_mentor.rate_hw(best_student, 'WEB', 10)
-cool_mentor.rate_hw(best_student, 'Python', 10)
-print(best_student.grades)
-Doctor_Lector = Lecturer('Nice', 'Guy')
-Doctor_Lector.courses_attached += ['WEB']
-best_student.rate_lecturer(Doctor_Lector, 'her', 9)
-print(Doctor_Lector.lect_rate)
+cool_girl = Student('Ana', 'Nana', 'F')
+cool_girl.finished_courses += ['HTML']
+cool_girl.courses_in_progress += ['WEB', 'Target']
+print(cool_girl)
